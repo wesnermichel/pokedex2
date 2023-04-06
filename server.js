@@ -23,46 +23,77 @@ app.get("/", (req, res) => {
 });
 
 //SHOW ROUTE
-app.get("/pokemon/:id", (req, res) => {
+app.get("/pokemon/show/:id", (req, res) => {
   // console.log (pokemons)
-  let pokemon = pokemons.find(poke => poke.id ==req.params.id)
-  console.log(pokemon)
-  res.render("show.ejs", { pokemon : pokemon });
-
+  let pokemon = pokemons.find((poke) => poke.id == req.params.id);
+  res.render("show.ejs", { pokemon: pokemon });
+  console.log(pokemon);
 });
 
 //NEW ROUTE
-app.get("/pokemon/new"), (req, res) => {
-    res.render("views/new.ejs", { pokemon: pokemonx });
-  };
+app.get("/pokemon/new", (req, res) => {
+  res.render("views/new.ejs", {});
+});
+
+//POST CREATE
+// app.post("/pokemon", (req, res) => {
+//   let newPokemon = req.body;
+//   newPokemon.type = newPokemon.type.split(",");
+//   pokemons.unshift(newPokemon);
+//   console.log(newPokemon);
+//   res.redirect("/pokemon");
+// });
+app.post("/pokemon/", (req, res) => {
+  let newPokemon = req.body;
+  newPokemon.type = newPokemon.type.split(",");
+  pokemons.unshift(newPokemon);
+  console.log(newPokemon);
+  res.redirect("/pokemon");
+});
+
+app.get("/pokemon", (req, res) => {
+  res.render("index", { pokemon: pokemons });
+});
 
 //EDIT PAGE
-router.get("pokemon/:indexOfPokemon/edit", (req, res) => {
+app.get("/pokemon/edit/:id/", (req, res) => {
   res.render("edit.ejs", {
-    pokemon: pokemon[req.params.indexOfPokemon],
-    index: req.params.indexOfPokemonArray,
+    pokemon: pokemons[req.params.id],
+    id: req.params.id,
   });
 });
 
-//CREATE ROUTE
-app.post("/pokemon/"),
-  (req, res) => {
-    res.render("pokemon", { pokemon });
-  };
+// //CREATE ROUTE
+// app.post("/pokemon/"),
+//   (req, res) => {
+//     res.render("pokemon", { pokemon });
+//   };
 
 //UPDATE ROUTE
-router.put("/:indexOfPokemon/update", (req, res) => {
-  res.render("edit.ejs", {
-    pokemon: pokemon[req.params.indexOfPokemon],
-    index: req.params.indexOfPokemonArray,
-  });
-});
+// router.put("/update/:id", (req, res) => {
+//   res.render("edit.ejs", {
+//     pokemon: pokemon[req.params.id],
+//     index: req.params.idArray,
+//   });
+// });
+
+// router.put("/update/:id", (req, res) => {
+//   let updatedPokemon = req.body;
+//   updatedPokemon.type = updatedPokemon.type.split(",");
+//   pokemons[req.params.id] = updatedPokemon;
+//   res.redirect("/pokemon");
+// });
 
 // DESTROY/DELETE ROUTE
-router.delete("/:indexOfPokemonArray", (req, res) => {
-  pokemon.splice(req.params.indexOfPokemonsArray, 1);
-  res.redirect("/");
-});
+// router.delete("/:indexOfPokemonArray", (req, res) => {
+//   pokemon.splice(req.params.indexOfPokemonsArray, 1);
+//   res.redirect("/");
+// });
+
+// router.delete("/:indexOfPokemonArray", (req, res) => {
+//   pokemons.splice(req.params.indexOfPokemonArray, 1);
+//   res.redirect("/");
+// });
 
 app.listen(port, () => {
   console.log(`🏝️ Server is listening to PORT ${port}`);

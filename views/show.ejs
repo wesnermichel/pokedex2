@@ -13,7 +13,7 @@
     </style>
   </head>&nbsp;
 <body>
-    <
+    
 <div><a href="https://generalassembly.com/"><img src="https://i.ibb.co/KFJhSV3/pokedex.png" alt="pokedex" border="0"></a>
 <h1>Pokedex, Gotta Catch 'Em All</h1>
 
@@ -32,11 +32,10 @@
           
             </li>
        <button> <a href="/">GO TO MAIN PAGE</a></button>
-       <a href="/pokemon/<%= pokemon._id %>/edit"><button>EDIT THIS POKEMON</button></a>
-        <form action="/pokemon/<%= pokemon._id %>?_method=DELETE" method="POST">
+       <a href="/pokemon/edit/<%= pokemon.id %>"><button>EDIT THIS POKEMON</button></a>
+        <form action="/pokemon/delete/<%= pokemon.id %>?_method=DELETE" method="POST">
             <input type="submit" value="DELETE POKEMON"/>
           </form>
-
     </ul>
 </body>
 <footer>
