@@ -10,6 +10,9 @@
         background-color: steelblue;
         text-align: center;
       }
+      button{
+        margin-top: 10px;
+      }
     </style>
   </head>&nbsp;
 <body>
@@ -20,14 +23,14 @@
 <form name="pokemon" action="/pokemon" method="POST">
 
 <p>Pokemon's Name</p><br>
+<input type="hidden" name="id" value="<%=id%>">
 <input type="text" id="name" name="name" placeholder="Eg. Carina">><p><br>
 <p>Pokemon's Image </p>
 <input type="text" id="img" name="img" placeholder="gif/img etc accepted">
 <p>Pokemon's Type</p><br>
 <input type="text" id="type" name="type" placeholder="Eg.fire">
 <p>Pokeomon's Stats</p><br>
-<input type="text" id="stat" name="stat" placeholder="Enter your Pokemon's current status">
-&nbsp&nbsp&nbsp
+<input type="text" id="stat" name="stat" placeholder="Current Status">
 <button type="submit">CREATE NEW ITEM</button>
 
 </form>

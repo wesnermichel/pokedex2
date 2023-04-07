@@ -29,14 +29,15 @@
     </style>    
   </head>
   <body>
+  <div><a href="https://generalassembly.com/"><img src="https://i.ibb.co/KFJhSV3/pokedex.png" alt="pokedex" border="0"></a>
     <h1>Pokemon World</h1>
+    <a href="/pokemon/new/">Create a new pokemon</a>
      <% console.log(pokemon) %>
     <div class="flex-container">
           <% for (let i = 0; i < pokemon.length; i++) { %>
       <div> <a href="/pokemon/show/<%=pokemon[i].id%>"><img src="<%= pokemon[i].img %>" width="200" /></a> </div>
       <% } %>
     </div>
-
   </body>
   <footer>
   <p></p>

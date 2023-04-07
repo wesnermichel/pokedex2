@@ -31,20 +31,15 @@ app.get("/pokemon/show/:id", (req, res) => {
 });
 
 //NEW ROUTE
-app.get("/pokemon/new", (req, res) => {
-  res.render("views/new.ejs", {});
+app.get("/pokemon/new/", (req, res) => {
+  res.render("new.ejs", { id: pokemons.length + 1 });
 });
 
 //POST CREATE
-// app.post("/pokemon", (req, res) => {
-//   let newPokemon = req.body;
-//   newPokemon.type = newPokemon.type.split(",");
-//   pokemons.unshift(newPokemon);
-//   console.log(newPokemon);
-//   res.redirect("/pokemon");
-// });
+
 app.post("/pokemon/", (req, res) => {
   let newPokemon = req.body;
+  console.log("newPokemon", newPokemon);
   newPokemon.type = newPokemon.type.split(",");
   pokemons.unshift(newPokemon);
   console.log(newPokemon);
@@ -63,19 +58,19 @@ app.get("/pokemon/edit/:id/", (req, res) => {
   });
 });
 
-// //CREATE ROUTE
-// app.post("/pokemon/"),
-//   (req, res) => {
-//     res.render("pokemon", { pokemon });
-//   };
+//CREATE ROUTE
+app.post("/pokemon/"),
+  (req, res) => {
+    res.render("pokemon", { pokemon });
+  };
 
 //UPDATE ROUTE
-// router.put("/update/:id", (req, res) => {
-//   res.render("edit.ejs", {
-//     pokemon: pokemon[req.params.id],
-//     index: req.params.idArray,
-//   });
-// });
+app.put("/update/:id", (req, res) => {
+  res.render("edit.ejs", {
+    pokemon: pokemon[req.params.id],
+    index: req.params.idArray,
+  });
+});
 
 // router.put("/update/:id", (req, res) => {
 //   let updatedPokemon = req.body;
@@ -85,15 +80,11 @@ app.get("/pokemon/edit/:id/", (req, res) => {
 // });
 
 // DESTROY/DELETE ROUTE
-// router.delete("/:indexOfPokemonArray", (req, res) => {
-//   pokemon.splice(req.params.indexOfPokemonsArray, 1);
-//   res.redirect("/");
-// });
 
-// router.delete("/:indexOfPokemonArray", (req, res) => {
-//   pokemons.splice(req.params.indexOfPokemonArray, 1);
-//   res.redirect("/");
-// });
+app.delete("/:indexOfPokemonArray", (req, res) => {
+  pokemons.splice(req.params.indexOfPokemonArray, 1);
+  res.redirect("/");
+});
 
 app.listen(port, () => {
   console.log(`🏝️ Server is listening to PORT ${port}`);
